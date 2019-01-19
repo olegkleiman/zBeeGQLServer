@@ -37,26 +37,26 @@ const server = new ApolloServer({
         // get the user token from the headers
         const authHeader = req.headers.authorization || '';
 
-        if( authHeader ) {
-
-          let tokens = authHeader.split(' ');
-          if( tokens[0] !== 'Basic') {
-            throw new AuthenticationError('You should provide Basic Authorization Header');
-          } else {
-
-            var encoded = base64.decode(tokens[1]);
-            tokens = encoded.split(':');
-
-            return {
-              user: {
-                roles: ['admin'],
-                email: tokens[0]
-              }
-            };
-          }
-        } else {
-          throw new AuthenticationError('You should provide Basic Authorization Header');
-        }
+        // if( authHeader ) {
+        //
+        //   let tokens = authHeader.split(' ');
+        //   if( tokens[0] !== 'Basic') {
+        //     throw new AuthenticationError('You should provide Basic Authorization Header');
+        //   } else {
+        //
+        //     var encoded = base64.decode(tokens[1]);
+        //     tokens = encoded.split(':');
+        //
+        //     return {
+        //       user: {
+        //         roles: ['admin'],
+        //         email: tokens[0]
+        //       }
+        //     };
+        //   }
+        // } else {
+        //   throw new AuthenticationError('You should provide Basic Authorization Header');
+        // }
       }
   });
 
