@@ -61,5 +61,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# dist
+/dist/bundle.js
+
 #produced kepler data files
-/data/*.csv
+#/data/*.csv

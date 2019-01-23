@@ -20,7 +20,7 @@ class KeplerData {
   // That file will be accessed by HTTP GET
   async processRawData() {
 
-    const fileName = `/data/snaps_.csv`;
+    const fileName = `/data/bees.csv`;
 
     const hostname = ip.address();
     return `http://${hostname}:4000${fileName}`;
