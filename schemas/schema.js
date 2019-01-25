@@ -8,8 +8,17 @@ const typeDefs = gql`
 
   scalar Date
 
+  type Origin implements INode {
+
+    id: ID!
+
+    originId: Int
+    name: String
+  }
+
   type Query {
 
+    origins : [Origin]
     keplerDataUrl(from: Date!, till: Date!): String
 
   }
