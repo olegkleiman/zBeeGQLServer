@@ -20,6 +20,7 @@ const typeDefs = gql`
 
     origins : [Origin]
     keplerDataUrl(from: Date!, till: Date!): String
+    keplerConfigUrl: String
 
   }
 `;

@@ -17,7 +17,7 @@ app.get('/data/:name', (req, res) => {
 
   const options = {
     root: path.join(__dirname, '../data/'),
-    dotfiles: 'deny'
+    // dotfiles: 'deny'
   }
 
   const fileName = req.params.name;
