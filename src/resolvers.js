@@ -13,11 +13,11 @@ import Origin from './Origin';
 export const resolvers = {
 
   Query: {
-    keplerDataUrl: (_: any, {from, till} : {from: Date, till: Date}) => {
-      return new KeplerData(from, till).getUrl();
+    keplerDataUrl: (_: any, {projectName, from, till} : {projectName: String, from: Date, till: Date}) => {
+      return new KeplerData(projectName, from, till).getUrl();
     },
-    keplerConfigUrl() {
-      return new KeplerConfig().getUrl();
+    keplerConfigUrl:(_: any, {projectName} : {projectName: String}) => {
+      return new KeplerConfig(projectName).getUrl();
     },
     origins() {
       return originsData.origins.map( item => {

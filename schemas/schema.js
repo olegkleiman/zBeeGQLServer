@@ -19,8 +19,8 @@ const typeDefs = gql`
   type Query {
 
     origins : [Origin]
-    keplerDataUrl(from: Date!, till: Date!): String
-    keplerConfigUrl: String
+    keplerDataUrl(projectName: String!, from: Date!, till: Date!): String
+    keplerConfigUrl(projectName: String!): String
 
   }
 `;

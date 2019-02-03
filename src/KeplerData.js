@@ -10,23 +10,25 @@ class KeplerData {
 
   from: Date
   till: Date
+  projectName: String
 
-  constructor(from: Date, till: Date) {
+  constructor(projectName: String, from: Date, till: Date) {
     this.from = from;
     this.till = till;
+    this.projectName = projectName;
   }
 
   // Create csv file in 'data' directory.
   // That file will be accessed by HTTP GET
   async processRawData() {
 
-    const fileName = `/data/bees.csv`;
+    const fileName = `/data/${this.projectName}.csv`;
 
     const hostname = ip.address();
     return `http://${hostname}:4000${fileName}`;
   }
 
-  async getUrl() {
+  async getUrl(projectName: String) {
 
     try {
       return ::this.processRawData();
