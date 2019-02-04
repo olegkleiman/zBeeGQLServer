@@ -10,10 +10,10 @@ class KeplerConfig {
 
   async getUrl(projectName: String) {
     const fileName = `/data/kepler.${this.projectName}.config.json`;
+    const hostname = ip.address();
     if( process.env.PORT ) {
       return `https://${hostname}${fileName}`;
     } else {
-      const hostname = ip.address();
       return `http://${hostname}:4000${fileName}`;
     }
   }
