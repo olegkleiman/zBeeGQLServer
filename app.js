@@ -13,7 +13,7 @@ app.use('*', cors({
                   })
        );
 
-app.get('/data/:name', (req, res) => {
+app.get('/data/:name', (req, res, next) => {
 
   const options = {
     root: path.join(__dirname, './data/'),
@@ -26,7 +26,7 @@ app.get('/data/:name', (req, res) => {
 
     if( err ) {
       console.error(err);
-      // next(err)
+      next(err)
     } else {
       console.log('Sent:', fileName);
     }
