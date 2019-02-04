@@ -194,15 +194,9 @@
             }
           },
           "visualChannels": {
-            "colorField": {
-              "name": "total_time",
-              "type": "real"
-            },
+            "colorField": null,
             "colorScale": "quantize",
-            "sizeField": {
-              "name": "total_time",
-              "type": "real"
-            },
+            "sizeField": null,
             "sizeScale": "linear"
           }
         }
@@ -212,10 +206,7 @@
           "fieldsToShow": {
             "my_data": [
               "origin_name",
-              "destination_name",
-              "trasport_type",
-              "switches",
-              "total_time"
+              "destination_name"
             ]
           },
           "enabled": true
@@ -229,12 +220,12 @@
       "splitMaps": []
     },
     "mapState": {
-      "bearing": 24,
+      "bearing": 94.125,
       "dragRotate": true,
-      "latitude": 32.1798012801882,
-      "longitude": 34.81233905523945,
-      "pitch": 50,
-      "zoom": 13.778693431686987,
+      "latitude": 40.788555435370625,
+      "longitude": -73.94715771992335,
+      "pitch": 27.412001592793185,
+      "zoom": 11.595606511499293,
       "isSplit": false
     },
     "mapStyle": {
