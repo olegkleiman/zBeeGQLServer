@@ -12,7 +12,8 @@ class KeplerConfig {
     const fileName = `/data/kepler.${this.projectName}.config.json`;
     const hostname = ip.address();
     if( process.env.PORT ) {
-      return `https://${hostname}${fileName}`;
+      // return `https://${hostname}${fileName}`;
+      return `https://zbeegqlserver.azurewebsites.net${fileName}`;
     } else {
       return `http://${hostname}:4000${fileName}`;
     }

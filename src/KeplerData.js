@@ -25,7 +25,8 @@ class KeplerData {
     const fileName = `/data/${this.projectName}.csv`;
     const hostname = ip.address();
     if( process.env.PORT ) {
-      return `https://${hostname}${fileName}`;
+      // return `https://${hostname}${fileName}`;
+      return `https://zbeegqlserver.azurewebsites.net${fileName}`;
     } else {
       return `http://${hostname}:4000${fileName}`;
     }
