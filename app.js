@@ -21,9 +21,12 @@ app.get('/data/:name', (req, res) => {
   }
 
   const fileName = req.params.name;
+  console.log(fileName);
   res.sendFile(fileName, options, err => {
+
     if( err ) {
-      next(err)
+      console.error(err);
+      // next(err)
     } else {
       console.log('Sent:', fileName);
     }
