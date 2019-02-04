@@ -62,8 +62,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: '/' });
 
-// const PORT = process.env.port || 4000;
-const PORT = 80;
+const PORT = process.env.port || 4000;
 const httpServer = app.listen(PORT, () => {
   console.log(`🚀  Server ready at port ${httpServer.address().port}`);
 })
