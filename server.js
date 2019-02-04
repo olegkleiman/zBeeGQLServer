@@ -3,8 +3,8 @@ import cors from 'cors';
 import path from 'path';
 const { ApolloServer, AuthenticationError } = require('apollo-server-express');
 import base64 from 'base-64';
-import typeDefs from '../schemas/schema.js';
-const resolvers = require('./resolvers.js').resolvers;
+import typeDefs from './schemas/schema.js';
+const resolvers = require('./src/resolvers.js').resolvers;
 
 const app = express();
 app.use('*', cors({
@@ -16,7 +16,7 @@ app.use('*', cors({
 app.get('/data/:name', (req, res) => {
 
   const options = {
-    root: path.join(__dirname, '../data/'),
+    root: path.join(__dirname, './data/'),
     // dotfiles: 'deny'
   }
 

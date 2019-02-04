@@ -6,9 +6,9 @@
   "scripts": {
     "build": "webpack -d",
     "pre-build": "babel ./src ./schemas -d lib --source-maps",
-    "serve": "yarn pre-build && nodemon --experimental-worker --inspect-brk",
-    "start": "nodemon ./src/server.js --exec babel-node --presets es2015 --plugins transform-class-properties",
-    "debug": "nodemon ./src/server.js --inspect-brk --exec babel-node --presets es2015 --plugins transform-class-properties",
+    "serve": "yarn pre-build && nodemon",
+    "start": "nodemon server.js --exec babel-node --presets es2015 --plugins transform-class-properties",
+    "debug": "nodemon server.js --inspect-brk --exec babel-node --presets es2015 --plugins transform-class-properties",
     "flow": "flow",
     "test": "jest"
   },
