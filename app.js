@@ -33,6 +33,8 @@ app.get('/data/:name', (req, res) => {
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true,
+    playground: true,
     context: ({ req }) => {
         // get the user token from the headers
         const authHeader = req.headers.authorization || '';
