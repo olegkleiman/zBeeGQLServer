@@ -38,6 +38,7 @@ const server = new ApolloServer({
     resolvers,
     introspection: true,
     playground: true,
+    tracing: true,
     context: ({ req }) => {
         // get the user token from the headers
         const authHeader = req.headers.authorization || '';

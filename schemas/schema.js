@@ -16,6 +16,10 @@ const typeDefs = gql`
     name: String
   }
 
+  type Mutation {
+    refresh(projectName: String!): String
+  }
+
   type Query {
 
     origins : [Origin]

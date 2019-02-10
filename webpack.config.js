@@ -18,7 +18,7 @@ var config = {
   target: 'node',
   entry: [
     'babel-polyfill',
-    path.resolve(__dirname, './src/server.js')
+    path.resolve(__dirname, './server.js')
   ],
   externals: nodeModules,
   output: {
