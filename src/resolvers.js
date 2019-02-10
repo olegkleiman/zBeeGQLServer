@@ -10,7 +10,6 @@ import fs from 'fs';
 import parse from 'csv-parse';
 import fetch from 'node-fetch';
 import csvWriter from 'csv-write-stream';
-import interval from 'interval-promise';
 
 import KeplerData from './KeplerData';
 import KeplerConfig from './KeplerConfig';
@@ -59,44 +58,58 @@ export const resolvers = {
       const outfilePath = path.resolve(__dirname, `../data/${projectName}_out.csv`);
       writer.pipe(fs.createWriteStream(outfilePath, {flags: 'w'}));
 
-      let linesCounter = 0;
-      await interval(async (iteration, stop) => {
-        const line = lines[++linesCounter];
-        if( line == null ) {
-          stop();
-          return;
-        }
+      const res = await new Promise( (resolve, reject) => {
 
-        const [originId,originName,originLat,originLon,destinationId,destinationName,destinationLat,destinationLon] = line;
-        if( parseFloat(originLat) ) {
+          let linesCount = 0;
 
-          const apiKey = 'AIzaSyAZ46YK7LBAW6gqxkgJ1AA6ForQ2mvhWUU';
-          const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?destination=${destinationLat},${destinationLon}&key=${apiKey}&origin=${originLat},${originLon}&mode=transit`;
+          lines.map( (line, index) => {
 
-          const res = await fetch(apiUrl);
-          const json = await res.json();
-          if( json.routes.length ) {
-            const point = json.routes[0].legs[0];
-            const eta = Math.ceil(point.duration.value/60);
+            setTimeout( async() => {
 
-            console.log(`ET: ${linesCounter}). ${eta}`);
-            writer.write({
-              origin_id: originId,
-              origin_name: originName,
-              origin_lat: originLat,
-              origin_lon: originLon,
-              destination_id: destinationId,
-              destination_lat: destinationLat,
-              destination_lon: destinationLon,
-              destination_name: destinationName,
-              travel_time: eta
-            });
-          }
-        }
+                const [originId,originName,originLat,originLon,destinationId,destinationName,destinationLat,destinationLon] = line;
+                if( parseFloat(originLat) ) {
+                    const apiKey = 'AIzaSyAZ46YK7LBAW6gqxkgJ1AA6ForQ2mvhWUU';
+                    const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?destination=${destinationLat},${destinationLon}&key=${apiKey}&origin=${originLat},${originLon}&mode=transit`;
 
-      }, 40, {iterations: lines.length});
+                    try {
+                      const res = await fetch(apiUrl);
+                      const json = await res.json();
+                      if( json.routes.length ) {
+                        const point = json.routes[0].legs[0];
+                        const eta = Math.ceil(point.duration.value/60);
 
-      return outfilePath;
+                        console.log(`ET: ${index}). ${eta}`);
+                        writer.write({
+                          origin_id: originId,
+                          origin_name: originName,
+                          origin_lat: originLat,
+                          origin_lon: originLon,
+                          destination_id: destinationId,
+                          destination_lat: destinationLat,
+                          destination_lon: destinationLon,
+                          destination_name: destinationName,
+                          travel_time: eta
+                        });
+                      }
+                    } catch(err) {
+                      console.error(err);
+                      reject();
+                    }
+                }
+
+                if( ++linesCount == lines.length )   {
+                  resolve(outfilePath);
+                  return;
+                }
+
+            }, 200 * index);
+
+
+          });
+      })
+
+      return res;
+
     }
 
   }
