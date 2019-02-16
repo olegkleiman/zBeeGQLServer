@@ -206,7 +206,8 @@
           "fieldsToShow": {
             "my_data": [
               "origin_name",
-              "destination_name"
+              "destination_name",
+              "travel_time"
             ]
           },
           "enabled": true
@@ -222,10 +223,10 @@
     "mapState": {
       "bearing": 94.125,
       "dragRotate": true,
-      "latitude": 40.788555435370625,
-      "longitude": -73.94715771992335,
+      "latitude": 40.78029269383115,
+      "longitude": -73.94424601161735,
       "pitch": 27.412001592793185,
-      "zoom": 11.595606511499293,
+      "zoom": 11.31020499318433,
       "isSplit": false
     },
     "mapStyle": {
